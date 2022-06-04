@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <section>
+            <h1>Task App with JavaScript</h1><br>
+            <form id="task_form">
+                <label for="new_task">Add Tasks</label>
+                <input type="text" id="new_task" name="new_task" placeholder="New Task">
+                <input type="submit" value="Add Task">
+            </form>
+            <hr>
+            <input type="text" id="filter" placeholder="Search">
+            <label>Task List</label>
+            <ul id="task_list">
+
+            </ul>
+            <button id="clr_btn">Clear Task</button>
+        </section>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
