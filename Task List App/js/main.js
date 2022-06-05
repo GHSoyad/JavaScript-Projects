@@ -13,7 +13,7 @@ filter.addEventListener('keyup', filterTask)
 document.addEventListener('DOMContentLoaded', getTask)
 
 
-//Function to add task
+//Add task
 function addTask(e){
     if(taskInput.value === ''){
         alert('Add a task');
@@ -34,17 +34,19 @@ function addTask(e){
     e.preventDefault();
 }
 
-//Function to remove task
+//Remove task
 function removeTask(e){
     if(e.target.hasAttribute('href')){
         if(confirm("Are you sure?")){
             let ele = e.target.parentElement;
             ele.remove();
+
+            removeTaskFromLS(ele);
         }
     }
 }
 
-//Function to clear list
+//Clear list
 function clearTask(e){
     if(confirm('Are you sure?')){
         while(taskList.firstChild){
@@ -54,7 +56,7 @@ function clearTask(e){
     }
 }
 
-//Function to filter task
+//Filter task
 function filterTask(e){
     let text = e.target.value.toLowerCase();
 
@@ -69,7 +71,7 @@ function filterTask(e){
     })
 }
 
-//Function to store in local storage
+//Store in local storage
 function storeToLocalStorage(task){
     let tasks;
 
@@ -104,3 +106,23 @@ function getTask(){
     })
 }
 
+//Remove tasks from local storage
+function removeTaskFromLS(taskItem){
+    let tasks;
+
+    if(localStorage.getItem('tasks') === null){
+        tasks = [];
+    }else{
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    let li = taskItem;
+    li.removeChild(li.lastChild);
+    tasks.forEach((task, index) => {
+        if(li.textContent.trim() === task){
+            tasks.splice(index, 1);
+        }
+    })
+
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+}
